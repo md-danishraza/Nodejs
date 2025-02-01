@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+  </head>
+  <body>
+    <h1>Welcome to URL shortener</h1>
+    <a href="/url">Create new URL</a>
+    <table>
+      <tr>
+        <th>S.No.</th>
+        <th>ShortID</th>
+        <th>Redirects</th>
+        <th>Clicks</th>
+      </tr>
+      <% allUrls.forEach((element,i) => { %>
+      <tr>
+        <td><%= i %></td>
+        <td><%= element.shortId %></td>
+        <td>
+          <a href="/url/<%= element.shortId %>"><%= element.redirectURL %></a>
+        </td>
+        <td><%= element.visitHistory.length %></td>
+      </tr>
+      <% }) %>
+    </table>
+  </body>
+</html>

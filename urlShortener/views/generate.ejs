@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generate</title>
+  </head>
+  <body>
+    <h1>Short URL</h1>
+    <% if(newUrl){ %>
+    <a href="<%= newUrl.redirectURL %>" target="_blank"
+      >Your shortened URL: <%= newUrl.shortId %>
+    </a>
+    <% } %>
+
+    <form action="/url" method="post">
+      <label for="inputURL">Enter a URL:</label>
+      <input type="text" id="inputURL" name="url" required />
+      <button type="submit">Generate</button>
+    </form>
+  </body>
+</html>
