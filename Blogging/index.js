@@ -8,7 +8,7 @@ const session = require("express-session");
 const flash = require("connect-flash");
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8000;
 
 app.engine("ejs", engine);
 app.set("view engine", "ejs");
@@ -18,8 +18,6 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-
-const SECRET_KEY = "your_secret_key";
 
 // Set up session middleware
 app.use(
@@ -45,8 +43,9 @@ const { isLoggedIn } = require("./middlewares/isloggedIn");
 app.use(isLoggedIn);
 
 // connecting to the server
+const mongo = process.env.MONGO_URL || "mongodb://localhost:27017/blogify";
 mongoose
-  .connect("mongodb://localhost:27017/blogify")
+  .connect(mongo)
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.error(err));
 
