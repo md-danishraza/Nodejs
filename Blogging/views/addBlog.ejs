@@ -1,6 +1,6 @@
 <%- layout("/layout/boilerplate") %>
-<div class="row blog mt-5">
-  <div class="col-md-6 offset-md-3">
+<div class="row blog">
+  <div class="col-md-6 offset-md-3 border shadow-lg py-4 px-4">
     <h1 class="text-center">Add New Blog</h1>
     <form action="/blog" method="post" enctype="multipart/form-data">
       <fieldset class="mb-3">
@@ -30,6 +30,7 @@
           name="coverImageURL"
           id="coverImageURL"
           class="form-control"
+          required
         />
       </fieldset>
       <button type="submit" class="btn btn-success">Submit</button>

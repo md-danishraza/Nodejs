@@ -3,6 +3,7 @@ const express = require("express");
 const Router = express.Router({ mergeParams: true });
 const User = require("../models/user");
 const { createTokenForUser, validateToken } = require("../services/auth");
+const { userValidationSchema } = require("../validatation");
 
 // user routes
 
@@ -29,6 +30,7 @@ Router.post("/login", async (req, res) => {
     res.cookie("token", token);
 
     // redirect to home
+    req.flash("success", "Logged In successfully!");
     res.redirect("/");
   } catch (err) {
     res.status(500).send(err);
@@ -40,7 +42,14 @@ Router.get("/signup", (req, res) => {
 });
 // handle signup
 Router.post("/signup", async (req, res) => {
+  const { error } = userValidationSchema.validate(req.body);
+  if (error) {
+    req.flash("error", error.details.map((el) => el.message).join(", "));
+    return res.redirect("/user/signup");
+  }
+
   const { fullName, email, password } = req.body;
+
   // console.log(req.body);
   const newUser = User({
     fullName,

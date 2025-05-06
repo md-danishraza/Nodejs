@@ -1,13 +1,9 @@
 <%- layout('layout/boilerplate') %>
-<h1 class="display-1 text-center mt-6">Welcome Home</h1>
-<div class="row mt-3 gap-4 justify-content-center">
+<!-- <h1 class="display-1 text-center mt-6">Welcome Home</h1> -->
+<div class="row gap-4 justify-content-center">
   <% blogs.forEach(blog =>{%>
-  <div class="card p-0" style="width: 18rem">
-    <img
-      src="/uploads/<%=blog.coverImageURL%>"
-      class="card-img-top"
-      alt="..."
-    />
+  <div class="card p-0 bg-secondary text-white shadow-sm" style="width: 20rem">
+    <img src="<%=blog.coverImageURL%>" class="card-img-top h-50" alt="..." />
     <div class="card-body">
       <h5 class="card-title"><%= blog.title %></h5>
       <% if(blog.body.length > 50){ %>
