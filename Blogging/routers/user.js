@@ -38,7 +38,7 @@ Router.post("/login", async (req, res) => {
 });
 // show signup
 Router.get("/signup", (req, res) => {
-  res.render("signup");
+  res.render("signUp");
 });
 // handle signup
 Router.post("/signup", async (req, res) => {
